@@ -3,7 +3,6 @@ import axios from "axios";
 import { Outlet } from "react-router-dom";
 import Sidebar from "../components/Profile/Sidebar";
 
-
 const Profile = () => {
   const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
@@ -52,10 +51,10 @@ const Profile = () => {
   }
 
   return (
-    <div className="bg-zinc-900 text-white px-4 md:px-12 flex flex-col md:flex-r min-h-screen">
+    <div className="bg-zinc-900 text-white px-4 md:px-12 flex flex-col  md:flex-row md:flex-r min-h-screen">
       {profile ? (
         <>
-          <div className="w-full md:w-1/6 h-[50%] md:h-[100%]">
+          <div className="w-full md:w-1/6 h-[50%] md:h-[100%] mt-4 ">
             <Sidebar data={profile} />
           </div>
           <div className="w-full md:w-5/6">
