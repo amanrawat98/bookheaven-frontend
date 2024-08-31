@@ -52,7 +52,7 @@ const Profile = () => {
   }
 
   return (
-    <div className="bg-zinc-900 text-white px-4 md:px-12 flex min-h-screen gap-4">
+    <div className="bg-zinc-900 text-white px-2 md:px-12 flex flex-col md:flex-row min-h-screen gap-4">
       {profile ? (
         <>
           <div className="w-full md:w-1/6 h-[50%] md:h-[100%] mt-3">
