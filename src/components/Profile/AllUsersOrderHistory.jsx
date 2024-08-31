@@ -25,7 +25,7 @@ const AllUsersOrderHistory = () => {
   const fetch = async () => {
     try {
       const response = await axios.get(
-        `${API_BASE_URL}/get-all-history`,
+        `${API_BASE_URL}/api/v1/get-all-history`,
         { headers }
       );
 
@@ -44,7 +44,7 @@ const AllUsersOrderHistory = () => {
     const status = e.target.value;
     try {
       const response = await axios.put(
-        `${API_BASE_URL}/update-status/${orderId}`,
+        `${API_BASE_URL}/api/v1/update-status/${orderId}`,
         { status },
         { headers }
       );

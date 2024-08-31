@@ -18,7 +18,7 @@ const Setting = () => {
     const fetch = async () => {
       try {
         const response = await axios.get(
-          `${API_BASE_URL}/get-user-information`,
+          `${API_BASE_URL}/api/v1/get-user-information`,
           { headers }
         );
         setProfile(response.data);
@@ -35,7 +35,7 @@ const Setting = () => {
   const changeAddress = async () => {
     try {
       const response = await axios.put(
-        `${API_BASE_URL}/update-address`,
+        `${API_BASE_URL}/api/v1/update-address`,
         { address },
         { headers }
       );

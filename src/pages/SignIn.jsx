@@ -50,7 +50,7 @@ const SignIn = () => {
         <p className="text-lg font-semibold text-zinc-100">Sign In</p>
 
         <form onSubmit={submit} className="space-y-4">
-          <div>
+          <div className="mt-4 space-y-3">
             <label htmlFor="username" className="text-zinc-100">
               Username
             </label>
@@ -66,7 +66,7 @@ const SignIn = () => {
             />
           </div>
 
-          <div>
+          <div className="mt-4 space-y-3">
             <label htmlFor="password" className="text-zinc-100">
               Password
             </label>

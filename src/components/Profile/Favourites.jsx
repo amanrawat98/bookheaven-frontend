@@ -13,7 +13,7 @@ const Favourites = () => {
 
   const fetch = async () => {
     const response = await axios.get(
-      `${API_BASE_URL}/get-favourite-books`,      { headers }
+      `${API_BASE_URL}/api/v1/get-favourite-books`,      { headers }
     );
 
     console.log("response", response.data.data);

@@ -48,7 +48,7 @@ const SignUp = () => {
         <p className="text-lg font-semibold text-zinc-100">Sign Up</p>
 
         <form onSubmit={submit} className="space-y-4">
-          <div>
+          <div className="mt-4 space-y-3">
             <label htmlFor="username" className="text-zinc-100">
               Username
             </label>
@@ -63,7 +63,7 @@ const SignUp = () => {
               onChange={onChange}
             />
           </div>
-          <div>
+          <div className="mt-4 space-y-3">
             <label htmlFor="email" className="text-zinc-100">
               Email
             </label>
@@ -78,7 +78,7 @@ const SignUp = () => {
               onChange={onChange}
             />
           </div>
-          <div>
+          <div className="mt-4 space-y-3">
             <label htmlFor="password" className="text-zinc-100">
               Password
             </label>
@@ -93,7 +93,7 @@ const SignUp = () => {
               onChange={onChange}
             />
           </div>
-          <div>
+          <div className="mt-4 space-y-3">
             <label htmlFor="address" className="text-zinc-100">
               Address
             </label>

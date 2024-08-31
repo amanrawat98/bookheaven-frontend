@@ -16,7 +16,7 @@ const UserOrderHistory = () => {
   const fetch = async () => {
     try {
       const response = await axios.get(
-        `${API_BASE_URL}/get-order-history`,
+        `${API_BASE_URL}/api/v1/get-order-history`,
         { headers }
       );
 

@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
-import { FaCartArrowDown, FaHeart, FaCartPlus, FaEdit } from "react-icons/fa";
+import { FaHeart } from "react-icons/fa6";
+import { FaCartShopping } from "react-icons/fa6";
+import { FaEdit } from "react-icons/fa";
 import { MdDelete } from "react-icons/md";
 import { useDispatch, useSelector } from "react-redux";
 import { authActions } from "../store/auth";
@@ -74,60 +76,62 @@ const ViewBookDetails = () => {
   return (
     <>
       {data ? (
-        <div className="bg-zinc-900 h-auto py-8 px-8 md:px-12 text-white flex flex-col md:flex-row gap-8">
-          <div className="bg-zinc-800 p-4 w-full lg:w-3/6">
-            <div className="flex flex-col md:flex-row gap-7">
-              <img src={data.url} alt={data.title} className="h-[50vh] lg:h-[70vh] object-cover" />
-              {isLoggedIn && (
-                <div className="flex flex-col md:flex-row gap-3">
-                  {role === "user" && (
-                    <>
-                      <button
-                        className="text-white rounded-full w-full text-xl gap-2 md:text-3xl p-3 bg-blue-600 flex items-center justify-center"
-                        onClick={handleAddToCart}
-                      >
-                        <FaCartShopping /> <span className="lg:hidden">Add to Cart</span>
-                      </button>
-                      <button
-                        className="text-red-600 rounded-full w-full text-xl gap-2 md:text-3xl p-3 bg-white flex items-center justify-center"
-                        onClick={handleFavourites}
-                      >
-                        <FaHeart /> <span className="lg:hidden">Favourites</span>
-                      </button>
-                    </>
-                  )}
-                  {role === "admin" && (
-                    <>
-                      <button
-                        className="text-white rounded-full w-full text-xl gap-2 md:text-3xl p-3 bg-blue-600 flex items-center justify-center"
-                        onClick={handleBookEdit}
-                      >
-                        <FaEdit /> <span className="lg:hidden">Edit</span>
-                      </button>
-                      <button
-                        className="text-red-600 rounded-full w-full text-xl gap-2 md:text-3xl p-3 bg-white flex items-center justify-center"
-                        onClick={handleBookDelete}
-                      >
-                        <MdDelete /> <span className="lg:hidden">Delete</span>
-                      </button>
-                    </>
-                  )}
+        <div className="bg-zinc-900 h-auto py-8 px-8 md:px-12  text-white gap-8 flex flex-col md:flex-row">
+          <div className="bg-zinc-800  p-4  w-full lg:w-3/6">
+            <div className="flex justify-around bg-zinc-800 py-12 rounded gap-7 md:gap-1 flex-col md:flex-row ">
+              <img src={data.url} alt="" className="h-[50vh] lg:h-[70vh]" />
+              {isLoggedIn === true && role === "user" && (
+                <div className="flex gap-3 items-center  justify-around  lg:justify-start  md:flex-col ">
+                  <button
+                    className="text-white rounded-full w-fit md:w-full text-1xl gap-2 md:text-3xl p-3 md:p-4 mt-4 bg-blue-600   flex items-center justify-center"
+                    onClick={handleAddToCart}
+                  >
+                    <FaCartShopping />{" "}
+                    <span className="lg:hidden">Add to Cart</span>
+                  </button>
+                  <button
+                    className="bg-white rounded-full w-fit md:w-full text-1xl gap-2 md:text-3xl p-3 md:p-4 mt-4 text-red-600 flex items-center justify-center"
+                    onClick={handleFavourites}
+                  >
+                    <FaHeart /> <span className="lg:hidden">Favourites</span>
+                  </button>
+                </div>
+              )}
+
+              {isLoggedIn === true && role === "admin" && (
+                <div className="flex gap-3 items-center  justify-around  lg:justify-start  md:flex-col ">
+                  <button className="text-white rounded-full w-fit md:w-full text-1xl gap-2 md:text-3xl p-3 md:p-4 mt-4 bg-blue-600   flex items-center justify-center" onClick={handleBookEdit}>
+                    <FaEdit /> <span className="lg:hidden">Edit</span>
+                  </button>
+                  <button
+                    className="bg-white rounded-full w-fit md:w-full text-1xl gap-2 md:text-3xl p-3 md:p-4 mt-4 text-red-600 flex items-center justify-center"
+                    onClick={handleBookDelete}
+                  >
+                    <MdDelete />
+                    <span className="lg:hidden">Delete</span>
+                  </button>
                 </div>
               )}
             </div>
           </div>
 
           <div className="p-4 w-full lg:w-3/6">
-            <h2 className="text-4xl text-zinc-300 font-semibold">{data.title}</h2>
+            <h2 className="text-4xl text-zinc-300 font-semibold">
+              {data.title}
+            </h2>
             <p className="text-zinc-400 mt-1">By {data.author}</p>
             <p className="text-zinc-500 mt-4 text-xl">{data.desc}</p>
-            <p className="text-zinc-400 mt-4 text-lg">{data.language}</p>
-            <p className="mt-4 text-zinc-100 text-3xl font-semibold">Price: ${data.price}</p>
+            <p className="flex mt-4 items-center justify-start text-zinc-400">
+              {data.language}
+            </p>
+            <p className="mt-4 text-zinc-100 text-3xl font-semibold">
+              Price: $ {data.price}
+            </p>
           </div>
         </div>
       ) : (
-        <div className="flex justify-center items-center w-full h-[88vh] bg-zinc-900">
-          <span className="loading loading-spinner loading-lg"></span>
+        <div className="flex justify-center my-8 h-[88vh] w-full bg-zinc-900 ">
+          <span className="loading loading-spinner loading-lg "></span>
         </div>
       )}
     </>
