@@ -78,8 +78,8 @@ const ViewBookDetails = () => {
       {data ? (
         <div className="bg-zinc-900 h-auto py-8 px-8 md:px-12  text-white gap-8 flex flex-col md:flex-row">
           <div className="bg-zinc-800  p-4  w-full lg:w-3/6">
-            <div className="flex justify-around bg-zinc-800 py-12 rounded gap-7 md:gap-1 flex-col md:flex-row ">
-              <img src={data.url} alt="" className="h-[50vh] lg:h-[70vh]" />
+            <div className="flex justify-around bg-zinc-800 py-4 md:py-6 rounded gap-7 md:gap-1 flex-col md:flex-row ">
+              <img src={data.url} alt="" className="h-[30vh] lg:h-[70vh]" />
               {isLoggedIn === true && role === "user" && (
                 <div className="flex gap-3 items-center  justify-around  lg:justify-start  md:flex-col ">
                   <button
@@ -116,7 +116,7 @@ const ViewBookDetails = () => {
           </div>
 
           <div className="p-4 w-full lg:w-3/6">
-            <h2 className="text-4xl text-zinc-300 font-semibold">
+            <h2 className=" text-2xl md:text-4xl text-zinc-300 font-semibold">
               {data.title}
             </h2>
             <p className="text-zinc-400 mt-1">By {data.author}</p>
@@ -124,7 +124,7 @@ const ViewBookDetails = () => {
             <p className="flex mt-4 items-center justify-start text-zinc-400">
               {data.language}
             </p>
-            <p className="mt-4 text-zinc-100 text-3xl font-semibold">
+            <p className="mt-4 text-zinc-100 text-lg md:text-3xl font-semibold">
               Price: $ {data.price}
             </p>
           </div>
