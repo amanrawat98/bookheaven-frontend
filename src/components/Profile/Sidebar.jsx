@@ -16,6 +16,11 @@ const Sidebar = ({ data }) => {
     dispatch(authActions.logOut());
   };
 
+  const handleBookEdit = () => {
+    dispatch(authActions.changeAddNewBookFalse());
+    console.log("clicked");
+  };
+
   return (
     <>
       <div className="bg-zinc-800 rounded p-4 flex flex-col items-center  h-[100%] justify-between ">
@@ -57,6 +62,8 @@ const Sidebar = ({ data }) => {
               <Link
                 to="/profile"
                 className="text-zinc-100 font-semibold w-full py-2 text-center hover:bg-zinc-900 rounded transition-all "
+                onClick={handleBookEdit}
+
               >
                 Add New Book{" "}
               </Link>{" "}
@@ -107,7 +114,8 @@ const Sidebar = ({ data }) => {
               {" "}
               <Link
                 to="/profile"
-                className="text-zinc-100 font-semibold w-full py-2 text-center p-2 hover:bg-zinc-900 rounded transition-all "
+                className="text-zinc-100 font-semibold w-full py-2 text-center p-2 hover:bg-zinc-900 rounded transition-all " 
+                onClick={handleBookEdit}
               >
                 Add New Book{" "}
               </Link>{" "}

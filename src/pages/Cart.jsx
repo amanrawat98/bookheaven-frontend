@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { MdDelete } from "react-icons/md";
-
+import { loadStripe } from "@stripe/stripe-js";
 
 const Cart = () => {
   const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
@@ -52,15 +52,23 @@ const Cart = () => {
 
   const handleOrder = async () => {
     try {
-      const response = await axios.put(
-        `${API_BASE_URL}/api/v1/place-order`,
+      const stripe = await loadStripe(import.meta.env.VITE_STRIPE_PK_KEY);
+      const response = await axios.post(
+        `${API_BASE_URL}/api/v1/make-payment`,
         cartOrders,
         { headers }
       );
-      console.log("response", response.data);
-      fetch();
+      console.log("response", response.data.id);
+
+      const result = await stripe.redirectToCheckout({
+        sessionId: response.data.id,
+      });
+
+      if (result.error) {
+        console.log(result.error.message);
+      }
     } catch (error) {
-      console.error("Error placing order:", error);
+      console.error("Error placing order:", error.message);
     }
   };
 

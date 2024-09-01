@@ -29,6 +29,11 @@ export const authSlice = createSlice({
     changeBookEdit: (state,action)=> {
       state.bookedit.edit = !state.bookedit.edit
       state.bookedit.bookid = action.payload;
+    },
+
+    changeAddNewBookFalse: (state,action)=> {
+      state.bookedit.edit = false;
+
     }
     
   },
