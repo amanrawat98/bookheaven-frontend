@@ -17,6 +17,7 @@ import Setting from "./components/Profile/Setting";
 import Cart from "./pages/Cart";
 import AddNewBook from "./pages/AddNewBook";
 import AllUsersOrderHistory from "./components/Profile/AllUsersOrderHistory";
+import Success from "./pages/Success";
 
 function App() {
   const dispatch = useDispatch();
@@ -48,6 +49,7 @@ function App() {
         <Route path="/sign-up" element={<SignUp />} />
         <Route path="/get-book-by-id/:id" element={<ViewBookDetails />} />
         <Route path="/cart" element={<Cart />} />
+        <Route path="/payment-success" element={<Success />} />
 
         <Route path="/profile" element={<Profile />}>
           {role === "user" ? (

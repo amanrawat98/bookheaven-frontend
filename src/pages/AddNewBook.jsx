@@ -3,20 +3,20 @@ import axios from "axios";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
-
 const AddNewBook = () => {
   const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
   const navigate = useNavigate();
   const bookedit = useSelector((state) => state.auth.bookedit);
   const [bookData, setBookData] = useState({
-    url: "",
     title: "",
     author: "",
     price: "",
     desc: "",
     language: "",
   });
+
+  const [uploadfile, setUploadFile] = useState(null);
 
   const headers = {
     id: localStorage.getItem("id"),
@@ -34,33 +34,59 @@ const AddNewBook = () => {
 
   console.log(bookedit.edit, bookedit.bookid);
 
+  const handleFileupload = (e) => {
+    console.log("e is", e.target.files[0]);
+    setUploadFile(e.target.files[0]);
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    console.log("form submit clicked");
+
+    if (!uploadfile) {
+      alert("Please select a file to upload.");
+      return;
+    }
+
+    console.log("uploadfile", uploadfile);
     try {
+      const formData = new FormData();
+      formData.append("file", uploadfile);
+      formData.append("title", bookData.title);
+      formData.append("author", bookData.author);
+      formData.append("price", bookData.price);
+      formData.append("desc", bookData.desc);
+      formData.append("language", bookData.language);
+
+      console.log("formdata", formData);
+
       const response =
         bookedit.edit === false
-          ? await axios.post(
-              `${API_BASE_URL}/api/v1/add-book`,
-              bookData,
-              { headers }
-            )
-          : await axios.put(
-              `${API_BASE_URL}/api/v1/update-book`,
-              bookData,
-              { headers }
-            );
+          ? await axios.post(`${API_BASE_URL}/api/v1/add-book`, formData, {
+              headers: {
+                "Content-Type": "multipart/form-data",
+                id: localStorage.getItem("id"),
+                authorization: `Bearer ${localStorage.getItem("token")}`,
+                bookid: bookedit.bookid,
+              },
+            })
+          : await axios.put(`${API_BASE_URL}/api/v1/update-book`, formData, {
+              headers,
+            });
       console.log("Book processed:", response.data);
       navigate("/all-books");
 
       // Reset form after successful submission
       setBookData({
-        url: "",
         title: "",
         author: "",
         price: "",
         desc: "",
         language: "",
       });
+
+      setUploadFile("");
     } catch (error) {
       console.error("Error processing book:", error);
     }
@@ -75,16 +101,12 @@ const AddNewBook = () => {
         <form onSubmit={handleSubmit}>
           <div className="mb-4">
             <label htmlFor="url" className="block font-medium mb-2">
-              Image URL
+              Image Photo Upload
             </label>
             <input
-              id="url"
-              name="url"
-              type="text"
-              value={bookData.url}
-              onChange={handleChange}
+              type="file"
+              onChange={handleFileupload}
               className="w-full px-3 py-2 border rounded-md focus:outline-none text-black focus:ring focus:border-blue-300"
-              required
             />
           </div>
           <div className="mb-4">

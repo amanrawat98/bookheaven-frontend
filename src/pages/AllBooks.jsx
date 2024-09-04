@@ -2,11 +2,10 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import BookCard from "../components/BookCard";
 
-
 const AllBooks = () => {
   const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
-  const [data, setData] = useState();
+  const [data, setData] = useState([]);
 
   useEffect(() => {
     const fetch = async () => {
@@ -23,6 +22,10 @@ const AllBooks = () => {
 
     fetch();
   }, []);
+
+  useEffect(() => {
+    console.log("data", data);
+  }, [data]);
 
   return (
     <div className=" bg-zinc-900 h-auto py-8 px-12">

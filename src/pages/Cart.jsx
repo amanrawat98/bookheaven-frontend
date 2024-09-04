@@ -64,6 +64,8 @@ const Cart = () => {
         sessionId: response.data.id,
       });
 
+      console.log("result",result);
+
       if (result.error) {
         console.log(result.error.message);
       }
