@@ -21,7 +21,7 @@ const Success = () => {
       .then((item) => {
         console.log("item", item);
       });
-  }, []);
+  }, [headers]);
   return <div>Success</div>;
 };
 

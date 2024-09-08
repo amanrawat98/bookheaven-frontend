@@ -68,10 +68,10 @@ const AllUsersOrderHistory = () => {
           Sr No.
         </div>
         <div className="col-span-2 md:col-span-1 mt-3 text-sm md:text-xl font-semibold break-words px-[2px]">
-          Email
+          Username
         </div>
         <div className="col-span-2 md:col-span-2 mt-3 text-sm md:text-xl font-semibold break-words px-[2px]">
-          User Name
+          Email
         </div>
         <div className="col-span-2 md:col-span-2 mt-3 text-sm md:text-xl font-semibold break-words px-[2px]">
           Address

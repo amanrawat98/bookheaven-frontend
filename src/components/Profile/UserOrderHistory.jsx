@@ -36,29 +36,52 @@ const UserOrderHistory = () => {
       <h2 className="text-lg text-center md:text-2xl mb-4"> Order History </h2>
 
       <div className="bg-zinc-700 grid grid-cols-7 px-3 py-3">
-        <div className="col-span-1 mt-3 text-sm md:text-xl font-semibold">No.</div>
-        <div className="col-span-1 text-start mt-3 text-sm md:text-xl font-semibold">Books</div>
-        <div className="col-span-2 mt-3 text-sm md:text-xl font-semibold ">Description</div>
-        <div className="col-span-1 mt-3 text-sm md:text-xl font-semibold">Price</div>
-        <div className="col-span-2 mt-3 text-sm md:text-xl font-semibold text-center">Status Placed</div>
+        <div className="col-span-2 mt-3 text-sm md:text-xl font-semibold">
+          Book Name
+        </div>
+        <div className="col-span-1 text-start mt-3 text-sm md:text-xl font-semibold">
+          Quantity
+        </div>
+        <div className="col-span-1 mt-3 text-sm md:text-xl font-semibold ">
+          Price
+        </div>
+        <div className="col-span-1 mt-3 text-sm md:text-xl font-semibold">
+          Total Amount
+        </div>
+        <div className="col-span-2 mt-3 text-sm md:text-xl font-semibold text-center">
+          Status Placed
+        </div>
 
         {userOrderHistory &&
-          userOrderHistory.length > 0 &&
-          userOrderHistory.map((item, i) => {
+          userOrderHistory?.length > 0 &&
+          userOrderHistory?.map((item, i) => {
             return (
               <>
-                <div className="col-span-1 text-sm md:text-lg mt-3">{i + 1}</div>
-                <div className="col-span-1 text-start text-sm break-words md:text-lg mt-3">{item.book.title}</div>
-                <div className="col-span-2 text-sm md:text-lg break-words mt-3">{item.book.desc.slice(0, 100)}</div>
-                <div className="col-span-1 text-sm md:text-lg break-words mt-3">${item.book.price}</div>
-                {item.status === 'Delivered' ? (
-                <div className="col-span-2 text-sm md:text-lg mt-3 break-words text-center text-green-500">{item.status}</div>
-              ) : item.status === 'Canceled' ? (
-                <div className="col-span-2 text-sm md:text-lg mt-3 text-center text-red-500">{item.status}</div>
-              ) : (
-                <div className="col-span-2 text-sm md:text-lg mt-3 text-center text-white">{item.status}</div>
-              )}
-
+                <div className="col-span-2 text-sm md:text-lg mt-3">
+                  {item?.book[0].title}
+                </div>
+                <div className="col-span-1 text-center pr-3 text-sm break-words md:text-lg mt-3">
+                  {item?.quantity}
+                </div>
+                <div className="col-span-1 text-sm pl-5 md:text-lg break-words mt-3">
+                  {item?.book[0].price}
+                </div>
+                <div className="col-span-1 text-sm md:text-lg break-words mt-3">
+                  ${item?.totalamount}
+                </div>
+                {item.status === "Delivered" ? (
+                  <div className="col-span-2 text-sm md:text-lg mt-3 break-words text-center text-green-500">
+                    {item?.status}
+                  </div>
+                ) : item.status === "Canceled" ? (
+                  <div className="col-span-2 text-sm md:text-lg mt-3 text-center text-red-500">
+                    {item?.status}
+                  </div>
+                ) : (
+                  <div className="col-span-2 text-sm md:text-lg mt-3 text-center text-white">
+                    {item?.status}
+                  </div>
+                )}
               </>
             );
           })}
