@@ -97,6 +97,10 @@ const ViewBookDetails = () => {
     }
   };
 
+  useEffect(()=>{
+    console.log(data);
+  }, [data])
+
   return (
     <>
       {data ? (
@@ -104,7 +108,7 @@ const ViewBookDetails = () => {
           <div className="bg-zinc-800 p-4 w-full lg:w-3/6">
             <div className="flex justify-around bg-zinc-800 py-4 md:py-6 rounded gap-7 md:gap-1 flex-col md:flex-row">
               <img
-                src={`${API_BASE_URL}/uploads/${data.url}`}
+                src={`${data.url}`}
                 alt=""
                 className="h-[30vh] lg:h-[70vh]"
               />
