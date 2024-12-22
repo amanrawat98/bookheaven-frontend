@@ -11,7 +11,6 @@ const BookCard = ({ data, favourites, latestfavouritevalue }) => {
     bookid: data._id,
   };
 
-
   const handleRemoveFavourites = async () => {
     try {
       const response = await axios.put(
@@ -31,7 +30,7 @@ const BookCard = ({ data, favourites, latestfavouritevalue }) => {
       <Link to={`/get-book-by-id/${data._id}`}>
         <div className="bg-zinc-800 p-4 rounded flex flex-col ">
           <div className="bg-zinc-900 flex items-center justify-center rounded ">
-            <img  src={`${API_BASE_URL}/uploads/${data.url}`}  alt="img" className="h-[35vh]" />
+            <img src={`${data.url}`} alt="img" className="h-[35vh]" />
           </div>
 
           <h2 className="mt-4 text-lg  font-semibold text-zinc-100">

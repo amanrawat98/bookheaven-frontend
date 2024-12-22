@@ -82,13 +82,15 @@ const AddNewBook = () => {
       formData.append("quantity", bookData.quantity);
 
       const response = bookedit.edit
-        ? await axios.put(`${API_BASE_URL}/api/v1/update-book`, formData, { headers })
+        ? await axios.put(`${API_BASE_URL}/api/v1/update-book`, formData, {
+            headers,
+          })
         : await axios.post(`${API_BASE_URL}/api/v1/add-book`, formData, {
             headers: { ...headers, "Content-Type": "multipart/form-data" },
           });
 
       alert("Book processed successfully!");
-      navigate("/all-books");
+      // navigate("/all-books");
       setBookData({
         title: "",
         author: "",
