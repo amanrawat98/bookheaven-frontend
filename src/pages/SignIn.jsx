@@ -3,10 +3,12 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { authActions } from "../store/auth";
-
+import { useToast } from "../hooks/useToasty";
 
 const SignIn = () => {
   const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
+  const { showSuccess, showError } = useToast();
+
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
@@ -19,23 +21,24 @@ const SignIn = () => {
     e.preventDefault();
     try {
       if (values.username === "" || values.password === "") {
-        alert("All fields are required.");
+        showError("All fields are required.");
       } else {
         const response = await axios.post(
           `${API_BASE_URL}/api/v1/sign-in`,
           values
         );
-        localStorage.setItem('id', response.data.id);
-        localStorage.setItem('token', response.data.token);
-        localStorage.setItem('role', response.data.role);
+        localStorage.setItem("id", response.data.id);
+        localStorage.setItem("token", response.data.token);
+        localStorage.setItem("role", response.data.role);
 
         dispatch(authActions.logIn());
         dispatch(authActions.changeRole(response.data.role));
+        showSuccess("Login Successfully");
 
-        navigate('/profile');
+        navigate("/profile");
       }
     } catch (error) {
-      alert(error.response?.data?.message || "An error occurred.");
+      showError(error.response?.data?.message || "An error occurred.");
     }
   };
 

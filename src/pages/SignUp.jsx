@@ -1,10 +1,11 @@
 import axios from "axios";
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-
+import { useToast } from "../hooks/useToasty";
 
 const SignUp = () => {
   const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
+  const { showSuccess, showError } = useToast();
 
   const navigate = useNavigate();
   const [values, setValues] = useState({
@@ -23,17 +24,17 @@ const SignUp = () => {
         values.password === "" ||
         values.address === ""
       ) {
-        alert("All fields are required.");
+        showError("All fields are required.");
       } else {
         const response = await axios.post(
           `${API_BASE_URL}/api/v1/sign-up`,
           values
         );
-        alert(response.data.message);
-        navigate('/sign-in');
+        showSuccess(response.data.message);
+        navigate("/sign-in");
       }
     } catch (error) {
-      alert(error.response?.data?.message || "An error occurred.");
+      showError(error.response?.data?.message || "An error occurred.");
     }
   };
 
